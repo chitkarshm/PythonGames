@@ -1,15 +1,6 @@
 import random
 
 
-def ask_continue():
-    redo = input("Do you want to continue?")
-    if redo == "yes" or redo == "y":
-        return True
-    else:
-        print("OK, bye!")
-        return False
-
-
 def roll_dice(num_of_die):
     sum = 0
     for _ in range(0, num_of_die):
@@ -32,5 +23,3 @@ while True:
     if num_of_die < 0:
         break
     roll_dice(num_of_die)
-    if not ask_continue():
-        break
