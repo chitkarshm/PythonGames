@@ -1,5 +1,4 @@
 import random
-import sys
 
 
 def ask_continue():
@@ -13,7 +12,7 @@ def ask_continue():
 
 def roll_dice(num_of_die):
     sum = 0
-    for i in range(0, num_of_die):
+    for _ in range(0, num_of_die):
         dice = random.randint(1, 6)
         sum = dice + sum
     print(f"You rolled a total of {sum}!")
