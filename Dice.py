@@ -1,4 +1,5 @@
 import random
+import sys
 
 
 def ask_continue():
@@ -10,20 +11,29 @@ def ask_continue():
         return False
 
 
-num_of_die = input("Do you want to roll 1 dice or 2?")
-if num_of_die == "1":
-    while True:
+def roll_dice(num_of_die):
+    sum = 0
+    for _ in range(0, num_of_die):
         dice = random.randint(1, 6)
-        print(f"You rolled a {dice}!")
+        sum = dice + sum
+    print(f"You rolled a {sum}!")
+
+
+num_of_die = input("Do you want to roll 1 dice or 2?")
+if not num_of_die.isdigit():
+    print("Enter a number only.")
+    sys.exit()
+
+num_of_die = int(num_of_die)
+if num_of_die == 1:
+    while True:
+        roll_dice(num_of_die)
         if not ask_continue():
             break
-elif num_of_die == "2":
+elif num_of_die == 2:
     while True:
-        dicea = random.randint(1, 6)
-        diceb = random.randint(1, 6)
-        total = dicea + diceb
-        print(f"You rolled a {total}!")
+        roll_dice(num_of_die)
         if not ask_continue():
             break
 else:
-    print("Please enter only 1 or 2.Bye!")
+    print("Enter a number only: 1 or 2")
