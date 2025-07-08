@@ -38,12 +38,20 @@ while True:
             print(multiply(num1, num2))
 
         elif choice == '4':
+            while num2 == 0:
+                print(f"You cannot divide {num1} by 0.")
+                num2 = float(input("Enter second number: "))
             print(divide(num1, num2))
-            
 
         next_calculation = input("Let's do next calculation? (yes/no): ")
         if next_calculation == "no":
-          break
+          exit()
+        elif next_calculation == "yes":
+            continue
+        else :        
+            print("Invalid Input.Bye!")
+            exit()
+
     else:
         print("Invalid Input.Bye!")
         break
