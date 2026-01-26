@@ -17,7 +17,7 @@ if door_choice == "leafy":
     print(
         "🍃🍃🍃...\nAwesome! You are now in a forest! There are three "
         "paths: "
-        "Right path, Left path, and Forward path."
+        "Right path, Left path, and Forward path. You will need good luck for this one"
     )
     choice = input("Right path=right Left path= left and Forward" " path=forward")
     if choice == "right":
