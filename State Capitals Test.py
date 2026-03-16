@@ -4,7 +4,7 @@ import random
 _TIMEOUT_SECS=15
 
 name = input("What is your name?")
-print(f"Hi {name}! Welcome to the State Capitals Test!\nYou have to guess the capital of the state!!\nYou only have {_TIMEOUT_SECS} seconds to solve each problem\n-If you need help just say 'idk'\n-3,")
+print(f"Hi {name}! Welcome to the State Capitals Test!\nYou have to guess the capital of the state!!\nYou only have {_TIMEOUT_SECS} seconds to solve each problem\nIf you need help just say 'idk'\n3,")
 time.sleep(1)
 print("2,")
 time.sleep(1)
@@ -27,9 +27,9 @@ question_answers = [
     ("Idaho ", "Boise"),
     ("Illinois ", "Springfield"),
     ("Indiana ", "Indianapolis"),
-    ("Iowa", "Des Moines"),
-    ("Kansas", "Topeka"),
-    ("Kentucky", "Frankfort"),
+    ("Iowa ", "Des Moines"),
+    ("Kansas ", "Topeka"),
+    ("Kentucky ", "Frankfort"),
     ("Louisiana ","Baton Rouge",),
     ("Maine ", "Augusta"),
     ("Maryland ", "Annapolis",),
