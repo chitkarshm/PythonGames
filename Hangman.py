@@ -3,12 +3,18 @@ import random
 
 
 def random_string():
-    return random.choices(["frog", "baboon", "cookies", "cake", "basketball", "yay","banana"])[0]
+    return random.choices(["frog", "baboon", "cookies", "cake", "basketball", "yay","banana", "boring", "super", "ultra", "lakes", "population"])[0]
 
 
 name = input("What is your name?")
 print(f"Hello {name}!Let's play Hangman!")
-time.sleep(3)
+time.sleep(1)
+print("3,")
+time.sleep(1)
+print("2,")
+time.sleep(1)
+print("1,")
+time.sleep(1)
 print("Start guessing...")
 time.sleep(0.5)
 word = random_string()
