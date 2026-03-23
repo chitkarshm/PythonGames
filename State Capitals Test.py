@@ -4,7 +4,9 @@ import random
 _TIMEOUT_SECS=15
 
 name = input("What is your name?")
-print(f"Hi {name}! Welcome to the State Capitals Test!\nYou have to guess the capital of the state!!\nYou only have {_TIMEOUT_SECS} seconds to solve each problem\n-If you need help just say 'idk'\n-3,")
+print(f"Hi {name}! Welcome to the State Capitals Test!\nYou have to guess the capital of the state!!\nYou only have {_TIMEOUT_SECS} seconds to solve each problem\nIf you need help just say 'idk'")
+time.sleep(6)
+print("3,")
 time.sleep(1)
 print("2,")
 time.sleep(1)
@@ -62,8 +64,7 @@ question_answers = [
     ("Washington ", "Olympia"),
     ("West Virginia ", "Charleston"),
     ("Wisconsin ", "Madison"),
-    ("Wyoming ", "Cheyenne"),
-]
+    ("Wyoming ", "Cheyenne"),]
 
 random.shuffle(question_answers)
 

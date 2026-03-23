@@ -1,103 +1,143 @@
+import turtle
+import time
 import random
-import turtle as t
-t.bgcolor('yellow')
-caterpillar=t.Turtle()
-caterpillar.shape('square')
-caterpillar.color('red')
-caterpillar.speed()
-caterpillar.penup()
-caterpillar.hideturtle()
-food=t.Turtle()
-food.shape('circle')
-food.color('green')
-food.penup()
-food.hideturtle()
+
+win = turtle.Screen()
+win.title("Caterpillar Game")
+win.bgcolor("green")
+win.setup(width=600, height=600)
+win.tracer(0)
+
+head = turtle.Turtle()
+head.speed(0)
+head.shape("circle")
+head.color("orange")
+head.penup()
+head.goto(0, 0)
+head.direction = "up" 
+
+
+food = turtle.Turtle()
 food.speed(0)
-gamestarted=False
-textturtle=t.Turtle()
-textturtle.write('Press SPACE to start',align='center', font=('Arial', 16,'bold'))
-textturtle.hideturtle()
-scoreturtle=t.Turtle()
-scoreturtle.hideturtle()
-scoreturtle.speed(0)
-def outsidewindow():
-      leftwall=-t.window_width()/2
-      rightwall=t.window_width()/2
-      topwall=t.window_height()/2
-      bottomwall=-t.window_height()/2
-      t.penup()
-      (x,y)=caterpillar.pos()
-      print('position. x=', x, ', y=', y, 'leftwall=', leftwall, 'rightwall=', rightwall, 'topwall=', topwall, 'bottomwall=', bottomwall)
-      outside=x < leftwall or x > rightwall or y < bottomwall or y > topwall
-      return outside
+food.shape("circle")
+food.color("red")
+food.penup()
+food.goto(0, 100)
 
-def game_over():
-      caterpillar.color('yellow')
-      food.color('yellow')
-      t.penup()
-      t.hideturtle()
-      t.write('GAME OVER!!', align='center', font=('Arial',30,'normal'))
+score = 0
+high_score = 0
 
-def displayscore(currentscore):
-      scoreturtle.clear()
-      scoreturtle.penup()
-      x=(t.window_width()/2)-50
-      y=(t.window_height()/2)-50
-      scoreturtle.setpos(x,y)
-      scoreturtle.write(str(currentscore),align='right',font=('Arial',40,'bold'))
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 0)
+pen.write("Score: 0  HIGH SCORE: 0", align="center", font=("Courier", 24, "bold"))
 
-def placefood():
-      food.ht()
-      food.setx(random.randint(-200,200))
-      food.sety(random.randint(-200,200))
-      food.st()
+segments = []
 
-def startgame():
-      global gamestarted
-      if gamestarted:
-            return
-      gamestarted=True
-
-score=0
-textturtle.clear()
-caterpillarspeed=1
-caterpillarlength=3
-caterpillar.shapesize(1,caterpillarlength,1)
-caterpillar.showturtle()
-displayscore(score)
-placefood()
-while True:
-      caterpillar.forward(caterpillarspeed)
-      if caterpillar.distance(food) < 20:
-            placefood()
-            caterpillarlength=caterpillarlength+1
-            caterpillar.shapesize(1,caterpillarlength,1)
-            caterpillarspeed=caterpillarspeed+1
-            score=score=10
-            displayscore(score)
-      if outsidewindow==True:
-            game_over()
-            break
 
 def up():
-      if caterpillar.heading()==0 or caterpillar.heading()==180:
-            caterpillar.setheading(90)
-
+    if head.direction != "down":
+        head.direction = "up"
 def down():
-      if caterpillar.heading()==0 or caterpillar.heading()==180:
-            caterpillar.setheading(270)
-
+    if head.direction != "up":
+        head.direction = "down"
 def left():
-      if caterpillar.heading()==90 or caterpillar.heading()==270:
-            caterpillar.setheading(180)
-
+    if head.direction != "right":
+        head.direction = "left"
 def right():
-      if caterpillar.heading()==90 or caterpillar.heading()==270:
-            caterpillar.setheading(0)
-t.onkey(startgame,'space')
-t.onkey(up,'Up')
-t.onkey(down,'Down')
-t.onkey(left,'Left')
-t.onkey(right,'Right')
-t.listen()
-t.mainloop()
+    if head.direction != "left":
+        head.direction = "right"
+
+def move():
+    if head.direction == "up":
+        head.sety(head.ycor() + 20)
+    if head.direction == "down":
+        head.sety(head.ycor() - 20)
+    if head.direction == "left":
+        head.setx(head.xcor() - 20)
+    if head.direction == "right":
+        head.setx(head.xcor() + 20)
+
+win.listen()
+win.onkeypress(up, "Up")
+win.onkeypress(down, "Down")
+win.onkeypress(left, "Left")
+win.onkeypress(right, "Right")
+
+def alternate():
+    if len(segments) % 2 == 0:
+        return "yellow"
+    else:
+        return "orange"
+
+while True:
+    win.update()
+    
+
+    if head.xcor() > 290 or head.xcor() < -290 or head.ycor() > 290 or head.ycor() < -290:
+        time.sleep(1)
+        head.goto(0, 0)
+        head.direction = "stop"
+        for segment in segments:
+            segment.goto(1000, 1000)
+        segments.clear()
+        pen.clear()
+        pen.goto(0, 230)
+        pen.write("GAME OVER", align="center", font=("Courier", 36, "bold"))
+        time.sleep(2)
+        score = 0
+        pen.clear
+        pen.goto(0, 0)
+        pen.write(f"SCORE: {score}  HIGH SCORE: {high_score}", align="center", font=("Courier", 24, "bold"))
+        
+
+
+    if head.distance(food) < 20:
+        food.goto(random.randint(-280, 280), random.randint(-280, 280))
+        new_segment = turtle.Turtle()
+        new_segment.speed(0)
+        new_segment.shape("circle")
+        new_segment.color(alternate()) 
+        new_segment.penup()
+        segments.append(new_segment)
+        
+        score += 1
+
+        if score > high_score:
+            high_score = score
+        
+        pen.clear()
+        pen.write(f"SCORE: {score}  HIGH SCORE: {high_score}", align="center", font=("Courier", 24, "bold"))
+
+    for i in range(len(segments) - 1, 0, -1):
+        x = segments[i-1].xcor()
+        y = segments[i-1].ycor()
+        segments[i].goto(x, y)
+
+    if len(segments) > 0:
+        segments[0].goto(head.xcor(), head.ycor())
+
+    move()
+
+    for segment in segments:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0, 0)
+            head.direction = "stop"
+            for s in segments:
+                s.goto(1000, 1000)
+            segments.clear()
+            pen.clear()
+            pen.goto(0, 230)
+            pen.write("GAME OVER", align="center", font=("Courier", 36, "bold"))
+            time.sleep(2)
+            score = 0
+            pen.clear
+            pen.goto(0, 0)
+            pen.write(f"SCORE: {score}  HIGH SCORE: {high_score}", align="center", font=("Courier", 24, "bold"))
+
+    time.sleep(0.1)
