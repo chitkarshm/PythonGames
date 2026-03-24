@@ -5,14 +5,14 @@ _TIMEOUT_SECS=15
 
 name = input("What is your name?")
 print(f"Hi {name}! Welcome to the State Capitals Test!\nYou have to guess the capital of the state!!\nYou only have {_TIMEOUT_SECS} seconds to solve each problem\nIf you need help just say 'idk'")
-time.sleep(6)
+time.sleep(4)
 print("3,")
 time.sleep(1)
 print("2,")
 time.sleep(1)
 print("1,")
 time.sleep(1)
-print("START GUESSING!!!")
+print("START COOKING!!!")
 
 question_answers = [
     ("Alabama ", "Montgomery"),
