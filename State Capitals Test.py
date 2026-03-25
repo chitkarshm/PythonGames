@@ -91,8 +91,8 @@ while index < turns:
         continue
     if ans == user_ans:
         if t_taken > _TIMEOUT_SECS:
-            print(f"You got the answer right, but it was too late. You lost all your points because you took {round(t_taken)} seconds.")
-            points=0
+            print(f"You got the answer right, but it was too late. You lost one point because you took {round(t_taken)} seconds. You have {points} points now.")
+            points-=1
         else:
             points += 1
             correct_count += 1
