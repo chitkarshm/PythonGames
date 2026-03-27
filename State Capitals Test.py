@@ -115,5 +115,7 @@ if index == turns:
         grade= "F. You should study more."
     print(f"Congrats {name}! You finished the entire list!!")
     print(f"Final Score: {points} points")
-    print(f"Accuracy: {round(percentage)} % ({correct_count}/{turns} correct)")
+    print(f"{correct_count}/{turns} correct")
+    print(f"Accuracy: {round(percentage)} %")
     print(f"Grade: {grade}")
+    print(f"Goodbye {name}!")
