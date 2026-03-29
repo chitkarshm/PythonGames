@@ -89,7 +89,7 @@ while index < turns:
         print(f"The capital of {ques} is {ans}.")
         index += 1
         continue
-    if ans == user_ans:
+    if ans.strip().lower() == user_ans.strip().lower():
         if t_taken > _TIMEOUT_SECS:
             print(f"You got the answer right, but it was too late. You lost one point because you took {round(t_taken)} seconds. You have {points} points now.")
             points-=1
@@ -98,21 +98,22 @@ while index < turns:
             correct_count += 1
             print(f"YAY! You have {points} points!")
     else:
-        points = points - 1
-        print(f"WRONG ANSWER!The correct answer was {ans}. You now have {points} points")
+        print(f"WRONG ANSWER!The correct answer was {ans}.")
     index += 1
 if index == turns:
     percentage= (correct_count/turns)*100
-    if percentage >= 90:
-        grade= "A!! You're a genius!!"
+    if percentage >= 97:
+        grade = "A+!! You are a geography legend!"
+    elif percentage >= 90:
+        grade = "A!! You're a genius!!"
     elif percentage >= 80:
-        grade= "B! Great job!"
+        grade = "B! Great job!"
     elif percentage >= 70:
-        grade= "C! Not bad!"
+        grade = "C! Not bad!"
     elif percentage >= 60:
-        grade= "D. Keep practicing!"
+        grade = "D. Keep practicing!"
     else:
-        grade= "F. You should study more."
+        grade = "F. You should study more."
     print(f"Congrats {name}! You finished the entire list!!")
     print(f"Final Score: {points} points")
     print(f"{correct_count}/{turns} correct")
