@@ -1,0 +1,27 @@
+print("Welcome to the Mean, Median, Mode, or Range Finder!")
+user_input = input("Please enter the numbers separated by spaces here: ")
+num = [int(x) for x in user_input.split()]
+num.sort()
+action = input("Should I find the mean, median, mode or range?(please enter in lowercase)")
+if action == "mean":
+    mean = sum(num) // len(num)
+    print(f"The mean, or average is {mean}! Thank you for using Mean, Median, Mode, or Range Finder! =]")
+elif action == "median":
+    length = len(num)
+    mid = length // 2
+    if length % 2 != 0 :
+        median = num[mid]
+    else:
+        median =  (num[mid - 1] + num[mid]) / 2  
+    print(f"The median, or middle number is {median}! Thank you for using Mean, Median, Mode, or Range Finder! =]")
+elif action == "mode":
+    highest_count = max(num.count(x) for x in num)
+    modes = list(set(x for x in num if num.count(x) == highest_count))
+    if len(modes) == 1:
+        print(f"The mode, or most frequent number is {modes[0]}! Thank you for using Mean, Median, Mode, or Range Finder! =]")
+    else:
+        modes_str = ", ".join(str(m) for m in sorted(modes))
+        print(f"The mode(s), or most frequent number(s) are {modes_str}! Thank you for using Mean, Median, Mode, or Range Finder! =]")
+elif action == "range":
+    num_range = num[-1] - num[0]
+    print(f"The range, or difference between the biggest and smallest number, is {num_range}! Thank you for using Mean, Median, Mode, or Range Finder! =]")
