@@ -1,6 +1,6 @@
 print("Welcome to the Mean, Median, Mode, or Range Finder!")
 user_input = input("Please enter the numbers separated by spaces here: ")
-num = [int(x) for x in user_input.split()]
+num = [float(x) if '.' in x else int(x) for x in user_input.split()]
 num.sort()
 action = input("Should I find the mean, median, mode or range?(please enter in lowercase)")
 if action == "mean":
